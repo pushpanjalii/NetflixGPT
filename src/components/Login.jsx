@@ -1,23 +1,36 @@
 import React from 'react'
+import { useState } from 'react'
 import Header from './Header'
 
 const Login = () => {
+
+const [isSignInForm, setIsSignInForm] = useState(true);
+const toggleSignInForm = () => {
+  setIsSignInForm(!isSignInForm);
+};
+
   return (
     <div>
       <Header />
       <div className='absolute'>
-      <img 
-      className='bg-cover h-screen w-full bg-no-repeat bg-center absolute'
-      src="https://assets.nflxext.com/ffe/siteui/vlv3/bfc0fc46-24f6-4d70-85b3-7799315c01dd/web/GH-en-20240923-TRIFECTA-perspective_447250ce-3fca-43ba-bef8-dddcc8484c30_small.jpg" 
+      <img className='h-screen w-screen bg-cover bg-center bg-no-repeat'
+      src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f562aaf4-5dbb-4603-a32b-6ef6c2230136/dh0w8qv-9d8ee6b2-b41a-4681-ab9b-8a227560dc75.jpg/v1/fill/w_1192,h_670,q_70,strp/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6Ii9mL2Y1NjJhYWY0LTVkYmItNDYwMy1hMzJiLTZlZjZjMjIzMDEzNi9kaDB3OHF2LTlkOGVlNmIyLWI0MWEtNDY4MS1hYjliLThhMjI3NTYwZGM3NS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.FScrpAAFnKqBVKwe2syeiOww6mfH6avq-DRHZ_uFVNw" 
       alt="Netflix Logo" />
       </div>
       <form className=' w-3/12 absolute p-12 bg-black my-36 mx-auto left-0 right-0 opacity-90 text-white rounded-lg bg-opacity-80'>
-        <h1 className='text-3xl font-bold py-4'>Sign In</h1>
-        <input type='text' placeholder='Email Address' className='p-2 my-4 bg-gray-700'/>
-        <input type= 'password' placeholder='Password' className='p-2 my-4 bg-gray-700'/>
-        <button className='bg-red-600 p-4 my-6 w-full '>Sign In </button>
+        <h1 className='text-3xl font-bold py-4'>
+          {isSignInForm ? 'Sign In' : 'Sign Up'}
+        </h1>
+        {!isSignInForm && (
+          <input type='text' placeholder='Full Name' className='p-2 my-4 w-full bg-gray-700'/>
+        )}
+        <input type='text' placeholder='Email Address' className='p-2 my-4 w-full bg-gray-700'/>
+        <input type= 'password' placeholder='Password' className='p-2 my-4 w-full bg-gray-700'/>
+        <button className='bg-red-600 p-4 my-6 w-full '>{isSignInForm ? 'Sign In' : 'Sign Up'} </button>
+        <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>
+          {isSignInForm ? 'New to Netflix? Sign Up Now' : 'Already have an account? Sign In'}
+        </p>
       </form>
-
     </div>
   )
 }
