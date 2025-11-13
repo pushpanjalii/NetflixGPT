@@ -2,15 +2,18 @@ import React from 'react'
 import { useState, useRef } from 'react'
 import Header from './Header'
 import { checkValidData } from '../utils/validate';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
 
 const [isSignInForm, setIsSignInForm] = useState(true);
 const [errorMessage, setErrorMessage] = useState(null);
+const navigate = useNavigate();
 
 
-const name = useRef(null);
 const email = useRef(null);
 const password = useRef(null);
 
@@ -18,8 +21,63 @@ const handleButtonClick = () => {
   //validate the form data
   // checkValidData(email, password);
 
-  const message = checkValidData(email.current.value, password.current.value, isSignInForm ? undefined : name.current.value);
+  const message = checkValidData(email.current.value, password.current.value);
   setErrorMessage(message);
+
+  if(message) return;
+
+  if(!isSignInForm) {
+    //sign up logic
+   createUserWithEmailAndPassword(
+    auth, 
+    email.current.value, 
+    password.current.value)
+
+   .then((userCredential) => {
+    updateProfile(auth.currentUser, {
+      displayName: "Netflix User"
+    }).then(() => {
+      // Profile updated!
+    }).catch((error) => {
+      // An error occurred
+      console.error("Error updating profile: ", error);
+    });
+    
+    // Signed in  
+    const user = userCredential.user;
+    console.log('User Signed Up:', user);
+    navigate('/browse');
+    // ...
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode+ "-"+ errorMessage);
+    // ..
+  });
+  }
+  
+  
+  else {
+    //sign in logic
+   signInWithEmailAndPassword(
+    auth, 
+    email.current.value, 
+    password.current.value)
+
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log('User Signed In:', user);
+      navigate('/browse');
+      // ...
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setErrorMessage(errorCode+ "-"+ errorMessage);
+    });
+  }
+
+
 }
 
 const toggleSignInForm = () => {
@@ -44,8 +102,7 @@ const toggleSignInForm = () => {
         </h1>
 
         {!isSignInForm && (
-          <input 
-          ref={name} 
+          <input  
           type='text' placeholder='Full Name' 
           className='p-2 my-4 w-full bg-gray-700'/>
         )}
