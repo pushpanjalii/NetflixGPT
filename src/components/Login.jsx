@@ -4,14 +4,15 @@ import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+import { USER_AVATAR } from '../utils/constants';
+// import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
 
 const [isSignInForm, setIsSignInForm] = useState(true);
 const [errorMessage, setErrorMessage] = useState(null);
-const navigate = useNavigate();
+// const navigate = useNavigate();
 
 
 const email = useRef(null);
@@ -35,7 +36,8 @@ const handleButtonClick = () => {
 
    .then((userCredential) => {
     updateProfile(auth.currentUser, {
-      displayName: "Netflix User"
+      displayName: "Netflix User",
+      photoURL: {USER_AVATAR}
     }).then(() => {
       // Profile updated!
     }).catch((error) => {
@@ -46,7 +48,7 @@ const handleButtonClick = () => {
     // Signed in  
     const user = userCredential.user;
     console.log('User Signed Up:', user);
-    navigate('/browse');
+    // navigate('/browse');
     // ...
   }).catch((error) => {
     const errorCode = error.code;
@@ -68,7 +70,7 @@ const handleButtonClick = () => {
       // Signed in
       const user = userCredential.user;
       console.log('User Signed In:', user);
-      navigate('/browse');
+      // navigate('/browse');
       // ...
     }).catch((error) => {
       const errorCode = error.code;
