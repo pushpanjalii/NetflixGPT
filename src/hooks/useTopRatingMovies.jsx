@@ -1,27 +1,28 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import { addTopRatingMovies } from "../utils/movieSlice";
 
 
-const useNowPlayingMovies = () => {
+
+const useTopRatingMovies = () => {
 //fetch data from tmdb api and update the redux store
   const dispatch = useDispatch();
 
-  const getNowPlayingMovies = async () => {
-    const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1',
+  const getTopRatingMovies = async () => {
+    const data = await fetch('https://api.themoviedb.org/3/movie/top_rated?page=1',
       API_OPTIONS
     );
     const json = await data.json();
     // console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
+    dispatch(addTopRatingMovies(json.results));
   }
 
   //using use effect here so that it can call it only once when the component loads and not on every re render also using 
   //[] as dependency array to make sure it runs only once 
   useEffect(() => {
-    getNowPlayingMovies();
+    getTopRatingMovies();
   }, [])
 }
 
-export default useNowPlayingMovies;
+export default useTopRatingMovies;
