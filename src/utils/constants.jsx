@@ -24,3 +24,5 @@ export const SUPPORTED_LANGUAGES = [{ identifier: 'en', name: 'English' },
 { identifier: 'german', name: 'German' },
 { identifier: 'chinese', name: 'Chinese' },
 { identifier: 'japanese', name: 'Japanese' }];
+
+export const GEMINI_API_KEY = "AIzaSyAkyw2iMFoXpPTXraaLdwx9zdu_DL7OI8Q";
