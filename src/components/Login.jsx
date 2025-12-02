@@ -98,7 +98,7 @@ const toggleSignInForm = () => {
 
       <form 
       onSubmit={(e) => e.preventDefault()} 
-      className=' w-3/12 absolute p-12 bg-black my-36 mx-auto left-0 right-0 opacity-90 text-white rounded-lg bg-opacity-80'>
+      className='w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto left-0 right-0 opacity-90 text-white rounded-lg bg-opacity-80'>
 
         <h1 className='text-3xl font-bold py-4'>
           {isSignInForm ? 'Sign In' : 'Sign Up'}
