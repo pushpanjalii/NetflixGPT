@@ -1,0 +1,38 @@
+<!-- Project will start from the body.jsx -->
+<!-- First we create the routing for login and brower section -->
+
+<!-- if you are suing an application which have very much forms mean very much fields then consider using the library formik-->
+<!-- Study about hooks -->
+
+# NetflixGPT
+
+- create react app
+- configured tailwindcss
+- header
+- routing of app
+- login form
+- sign up form
+- form validation
+- useRef Hook used for the reference 
+- Firebase setup
+- deploying our application to production
+- create signUp user account
+- Implement sign In user API
+- created redux store with userSlice
+- implemented sign out
+- update profiles
+- Fetch from tmdb movies
+
+
+
+
+# Features
+- Login/SignUp
+   - Sign In /Sign up form
+   - redirect to browse page
+- Browse(After Authentication)
+  - Header
+  - Main Movie
+    - Trailer in background
+    - Title & description
+    - MovieSuggestion

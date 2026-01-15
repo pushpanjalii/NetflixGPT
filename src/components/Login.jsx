@@ -16,7 +16,7 @@ const [errorMessage, setErrorMessage] = useState(null);
 // const navigate = useNavigate();
 
 
-const email = useRef(null);
+const email = useRef(null); //to access the input field for email and null because initially it is not pointing to any input field
 const password = useRef(null);
 
 const handleButtonClick = () => {
@@ -26,12 +26,12 @@ const handleButtonClick = () => {
   const message = checkValidData(email.current.value, password.current.value);
   setErrorMessage(message);
 
-  if(message) return;
+  if(message) return; //if there is an error message then return
 
   if(!isSignInForm) {
     //sign up logic
    createUserWithEmailAndPassword(
-    auth, 
+    auth, //firebase auth instance
     email.current.value, 
     password.current.value)
 
@@ -70,7 +70,7 @@ const handleButtonClick = () => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log('User Signed In:', user);
+      console.log('User Signed In:', user);//it will give the access token
       // navigate('/browse');
       // ...
     }).catch((error) => {
@@ -97,11 +97,12 @@ const toggleSignInForm = () => {
       </div>
 
       <form 
-      onSubmit={(e) => e.preventDefault()} 
+      onSubmit={(e) => e.preventDefault()} //preventing default form submission behavior which means page reload
       className='w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto left-0 right-0 opacity-90 text-white rounded-lg bg-opacity-80'>
 
         <h1 className='text-3xl font-bold py-4'>
           {isSignInForm ? 'Sign In' : 'Sign Up'}
+          {/*isSignInForm is true then show Sign In else show Sign Up */}
         </h1>
 
         {!isSignInForm && (
@@ -111,7 +112,7 @@ const toggleSignInForm = () => {
         )}
 
         <input 
-        ref={email} 
+        ref={email} //ref is used to access the input field
         type='text' placeholder='Email Address' 
         className='p-2 my-4 w-full bg-gray-700'/>
 
