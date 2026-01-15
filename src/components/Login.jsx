@@ -69,7 +69,7 @@ const handleButtonClick = () => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log('User Signed In:', user);//it will give the access token
+      console.log('User Signed In:', user); //it will give the access token
       // navigate('/browse');
       // ...
     }).catch((error) => {
