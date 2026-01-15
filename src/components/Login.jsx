@@ -11,8 +11,8 @@ import { BG_URL } from '../utils/constants';
 
 const Login = () => {
 
-const [isSignInForm, setIsSignInForm] = useState(true);
-const [errorMessage, setErrorMessage] = useState(null);
+const [isSignInForm, setIsSignInForm] = useState(true); //to toggle between sign in and sign up form and true means sign in form is shown initially
+const [errorMessage, setErrorMessage] = useState(null); //to show error messages and initially there is no error message
 // const navigate = useNavigate();
 
 
