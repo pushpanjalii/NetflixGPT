@@ -50,7 +50,6 @@ const handleButtonClick = () => {
     const user = userCredential.user;
     console.log('User Signed Up:', user);
     // navigate('/browse');
-    // ...
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
