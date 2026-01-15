@@ -22,7 +22,7 @@
 - implemented sign out
 - update profiles
 - Fetch from tmdb movies
-
+- 
 
 
 
@@ -36,3 +36,4 @@
     - Trailer in background
     - Title & description
     - MovieSuggestion
+    - Title and discription
